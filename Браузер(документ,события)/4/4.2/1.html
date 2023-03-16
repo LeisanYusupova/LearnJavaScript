@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="test"></div>
+
+    <script>
+
+        let test = document.querySelector('.test');
+
+        function replaceElement() {
+            newItem = document.createElement('textarea');
+            newItem.innerHtml = test.innerHTML;
+
+            newItem.onkeydown = function(event) {
+                if (event.key == 'Enter') {
+                    this.blur();
+                    }
+                };
+
+            newItem.onblur = function() {
+                editEnd();
+            };
+
+            test.replaceWith(newItem);
+            newItem.focus();
+        }
+
+        function editEnd() {
+            test.innerHTML = newItem.value;
+            newItem.replaceWith(test);
+        }
+
+
+        test.addEventListener('click', replaceElement)
+    </script>
+    
+</body>
+</html>
